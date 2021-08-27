@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+    --leftTeam: rgb(11, 130, 241);
+    --leftTeamBorder: rgb(46, 164, 255);
+    --rightTeam: rgb(235, 120, 12);
+    --rightTeamBorder: rgb(255, 154, 47);
+    --leftFont: 50px;
+    --rightFont: 50px;
+}
+*{
+    margin: 0;
+    border: 0;
+    color: rgba(216, 213, 208, 0.95);
+    font-size: 60px;
+    font-family: 'Exo', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+}
+.inner{
+    height: 1080px;
+    width: 1920px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-image: url("./Screenshot\ 2020-11-29\ 204036.png");
+}
+.scoreboard{
+    position: absolute;
+    width: 1000px;
+    height: 90px;
+    z-index: 10;
+    transform: skewX(-15deg);
+    top: 0px;
+    display: flex;
+    flex: row;
+}
+.team{
+    width: 425px;
+    display: flex;
+}
+.score{
+    width: 100px;
+    background-color: rgb(0, 0, 0);
+    border: 9px solid rgb(56, 56, 56);
+    border-radius: 0px 0px 25px 0px;
+}
+#LScore{
+    border-radius: 0px 0px 0px 25px;
+}
+#RScore{
+    border-radius: 0px 0px 25px 0px;
+
+}
+.one{
+    flex-direction: row-reverse;
+}
+.two{
+    flex-direction: row;
+}
+.name{
+    width: 325px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.two > .name {
+    background-color: var(--rightTeam);
+    border: 9px solid var(--rightTeamBorder);
+    font-size: var(--rightFont);
+}
+.one > .name {
+    background-color: var(--leftTeam);
+    border: 9px solid var(--leftTeamBorder);
+    font-size: var(--leftFont);
+}
+.clock{
+    width: 150px;
+}
+.ribbon{
+    position: absolute;
+    width: 780px;
+    height: 9px;
+    top: 81px;
+    left: 560px;
+    z-index: 25;
+    display: flex;
+    flex: row;
+    transform: skewX(-15deg);
+}
+.LTeamWin, 
+.RTeamWin{
+    display: flex;
+}
+.LTeamWin{
+    position: relative;
+    left: 9px;
+}
+.RTeamWin{
+    position: relative;
+    left: 180px;
+}
+.wins{
+    width: 295px;
+    height: fill;
+    background-color: rgba(206, 202, 202, 0.25);
+    margin-left: 0px;
+}
+.commentary{
+    background-color: rgb(12, 12, 61);
+    padding: 0px;
+    position: absolute;
+    left: 0;
+    top: 700px;
+    animation: fade 3s;
+    opacity: 1;
+    &::after{
+        content: "";
+        position: absolute;
+        top: -30px;
+        left: 0;
+        border-right: 10px solid rgba(255, 255, 255, 0);
+        z-index: 1000;
+        width: 110%;
+        height: 105%;
+        animation: swipe 2s;
+        transition: 5s ease-in-out;
+    }
+    .names{
+        text-align: left;
+        background-color: rgb(7, 7, 63);
+        border: 10px solid rgb(11, 11, 172);
+        position: relative;
+        top: -20px;
+        left: 30px;
+    }
+    .comment-title{
+        z-index: 40;
+        transform: skewX(-5deg);
+        position: relative;
+        top: -30px;
+        left: 35px;
+        padding: 0px 50px 0px 50px;
+        background: rgb(1, 1, 155);
+        border: 10px solid rgb(11, 11, 211);
+        .in{
+            color: white;
+            margin-top: 10px;
+        }
+    }
+}
+.hide{
+    transform: translateX(-600px);
+    transition: 1s ease-in-out;
+}
+.show{
+    background-color: rgb(12, 12, 61);
+    padding: 0px;
+    position: absolute;
+    left: 0;
+    top: 700px;
+    animation: fade 3s;
+    opacity: 1;
+    transform: translateX(0px);
+    transition: 1s ease-in-out;
+    &::after{
+        content: "";
+        position: absolute;
+        top: -30px;
+        left: 0;
+        border-right: 10px solid rgba(255, 255, 255, 0);
+        z-index: 1000;
+        width: 110%;
+        height: 105%;
+        animation: swipe 2s;
+        transition: 5s ease-in-out;
+    }
+}
+.LTR{
+    background-color: var(--leftTeam);
+    border: 0px solid var(--leftTeamBorder);
+    height: 70px;
+    width: 0px;
+    position: absolute;
+    transform: skewX(-15deg);
+    font-size: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 1465px;
+    top: 0px;
+    transition: 1s ease-in-out, color 0s ease;
+    opacity: 0;
+    p{
+        transition: color 0s ease-in-out;
+        color: rgba(216, 213, 208, 0);
+        font-size: 27px;
+        position: absolute;
+        width: 325px;
+    }
+}
+.RTR{
+    background-color: var(--rightTeam);
+    border: 0px solid var(--rightTeamBorder);
+    height: 70px;
+    width: 0px;
+    position: absolute;
+    left: 1465px;
+    top: 0px;
+    transform: skewX(-15deg);
+    font-size: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(216, 213, 208, 0);
+    transition: 1s ease-in-out, color 0s ease;
+    opacity: 0;
+    p{
+        transition: color 0s ease-in-out;
+        color: rgba(216, 213, 208, 0);
+        font-size: 27px;
+        position: absolute;
+        width: 325px;
+    }
+}
+.ShowR{
+    border: 9px solid var(--rightTeamBorder);
+    // transform: skewX(-15deg) translateX(0px);
+    transition: 1s ease-in-out;
+    opacity: 1;
+    width: 325px;
+    p{
+        transition-delay: 2s;
+        transition-property: color;
+        transition: color 2s ease-in-out;
+        color: rgba(216, 213, 208, 0.95);
+    }
+}
+.ShowL{
+    color: rgba(216, 213, 208, 0.95);
+    border: 9px solid var(--leftTeamBorder);
+    transform: skewX(-15deg) translateX(0px);
+    transition: 1s ease-in-out;
+    opacity: 1;
+    width: 325px;
+    p{
+        transition-delay: 2s;
+        transition-property: color;
+        transition: color 2s ease-in-out;
+        color: rgba(216, 213, 208, 0.95);
+    }
+}
+.showscore{
+    transform: translateY(0px) skewX(-15deg);
+    transition: 2s ease-in-out;
+}
+.hidden{
+    transform: skewX(-15deg) translateY(-150px);
+    transition: 2s ease-in-out;
+}
+.showing{
+    transform: skewX(-15deg) translateY(0px);
+    transition: 2s ease-in-out;
+}
+.welcome{
+    background-color: rgb(7, 7, 63);
+    border: 10px solid rgb(11, 11, 172);
+    padding: 0px;
+    position: relative;
+    top: 400px;
+    animation: fade 3s;
+    opacity: 1;
+    transform: translateY(0px) skewX(-15deg);
+    transition: 1s ease-in-out;
+    padding: 10px 100px 10px 100px;
+}
+.hidebot{
+    transform: skewX(-15deg) translateY(300px);
+    transition: 1s ease-in-out;
+}
+.showsbot{
+    transform: skewX(-15deg) translateY(0px);
+    transition: 1s ease-in-out;
+}
+@keyframes fade {
+    0%{
+        opacity: 0%;
+    }
+    10%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+@keyframes fadeout {
+    0%{
+        opacity: 100%;
+        width: 100%;
+        border: 9px;
+    }
+    10%{
+        opacity: 100%;
+        width: 100%;
+        border: 9px;
+    }
+    100%{
+        opacity: 0%;
+        width: 0%;
+        border: 0px;
+    }
+}
+@keyframes swipe {
+        0%{
+            width: 0%;
+            opacity: 100%;
+            border-color: rgba(255, 255, 255, 0.568);
+        }
+        99%{
+            border-color: rgba(255, 255, 255, 0.568);
+        }
+        100%{
+            opacity: 0%;
+            width: 115%;
+            border-color: rgba(255, 255, 255, 0);
+        }
+
+}

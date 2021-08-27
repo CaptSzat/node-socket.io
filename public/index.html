@@ -5,19 +5,53 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p id="server-time"></p>
+  <div class="inner">
+    <div class="scoreboard" id="scoreboard">
+        <div class="team one">
+            <div class="name" id="LName">Jack</div>
+            <div class="score" id="LScore">0</div>
+        </div>
+        <div class="clock"></div>
+        <div class="team two">
+            <div class="name" id="RName">Jeff</div>
+            <div class="score" id="RScore">0</div>
+        </div>
+    </div>
+    <div class="ribbon" id="ribbon">
+        <div class="LTeamWin">
+            <div class="wins" id="LTeam1"></div>
+            <!-- <div class="wins" id="LTeam2"></div> -->
+            <!-- <div class="wins" id="LTeam3"></div> -->
+        </div>
+        <div class="RTeamWin">
+            <div class="wins" id="RTeam1"></div>
+            <!-- <div class="wins" id="RTeam2"></div> -->
+            <!-- <div class="wins" id="RTeam3"></div> -->
+        </div>
+    </div>
+    <div class="commentary" id="commbox">
+        <div class="comment-title"><p class="in">Commentary</p></div>
+        <div class="names first">
+            <p>Rue<br>
+            RageGamer
+        </p>
+        </div>
+    </div>
+    <div class="welcome" id="welcome">
+        <p id="p">Welcome To RLC3</p>
+    </div>
+</div>
+<div class="LTR" id="LTR">
+   <p>Won The Last game</p>
+</div>
+<div class="RTR" id="RTR">
+   <p>Won The Last game</p>
+</div>
+  <!-- <p id="server-time"></p> -->
   <script src="/socket.io/socket.io.js"></script>
-  <!-- <script>
-    let socket = io();
-    let el;
-
-    socket.on('time', (timeString) => {
-      el = document.getElementById('server-time');
-      el.innerHTML = 'Server time: ' + timeString;
-    });
-  </script> -->
   <script src="./index.js"></script>
 </body>
 </html>
