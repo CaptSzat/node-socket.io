@@ -13,13 +13,13 @@ var RName = "Tim"
 socket.on('ShowInterlude', data => {
   console.log("check" + data);
   if(data === true){
-    document.getElementById('interlude').classList.remove('showInterlude');
-    document.getElementById('interlude').classList.add('hideInterlude');
+    document.getElementById('interlude').classList.remove('ShowInterlude');
+    document.getElementById('interlude').classList.add('HideInterlude');
     console.log(data);
   }
   if(data === false){
-    document.getElementById('interlude').classList.add('showInterlude');
-    document.getElementById('interlude').classList.remove('hideInterlude');
+    document.getElementById('interlude').classList.add('ShowInterlude');
+    document.getElementById('interlude').classList.remove('HideInterlude');
   }
 });
 socket.on('LName', data => {
