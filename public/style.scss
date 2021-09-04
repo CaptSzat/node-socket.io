@@ -114,6 +114,7 @@
     top: 700px;
     animation: fade 3s;
     opacity: 1;
+    z-index: 20;
     &::after{
         content: "";
         position: absolute;
@@ -191,6 +192,7 @@
     top: 0px;
     transition: 1s ease-in-out, color 0s ease;
     opacity: 0;
+    z-index: 20;
     p{
         transition: color 0s ease-in-out;
         color: rgba(216, 213, 208, 0);
@@ -215,6 +217,7 @@
     color: rgba(216, 213, 208, 0);
     transition: 1s ease-in-out, color 0s ease;
     opacity: 0;
+    z-index: 20;
     p{
         transition: color 0s ease-in-out;
         color: rgba(216, 213, 208, 0);
@@ -273,6 +276,7 @@
     transform: translateY(0px) skewX(-15deg);
     transition: 1s ease-in-out;
     padding: 10px 100px 10px 100px;
+    z-index: 30;
 }
 .hidebot{
     transform: skewX(-15deg) translateY(300px);
@@ -282,6 +286,133 @@
     transform: skewX(-15deg) translateY(0px);
     transition: 1s ease-in-out;
 }
+.ShowInterlude{
+    position: absolute;
+    height: 1080px;
+    width: 1920px;
+    transform: translate(1080px,1920px);
+    background-color: rgb(12, 105, 74);
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 2s ease-in-out;
+}
+.interlude{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1080px;
+    width: 1920px;
+    background-color: rgb(12, 105, 74);
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1{
+        position: absolute;
+        top: 20px;
+        font-size: 2rem;
+    }
+    .middle{
+        position: absolute;
+        left: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        .faces{
+            width: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            padding: 1rem;
+            .person{
+                width: 50%;
+                padding: 1rem;
+                margin: 1rem;
+                background-color: rgb(8, 58, 41);
+                border: 9px solid rgb(9, 161, 110);
+                img{
+                    width: 128px;
+                }
+            }
+        }
+        .cards{
+            display: flex;
+            flex-direction: column;
+            padding: 0.1rem;
+            // justify-content: center;
+            // align-items: center;
+            width: 50%;
+            background-color: rgb(0, 153, 255);
+            border: solid 9px rgb(27, 106, 197);
+            p{
+                font-size: 1.1rem;
+                span{
+                    font-size: 0.8rem;
+                    color: rgb(27, 13, 151);
+                }
+            }
+            .JD{
+                position: relative;
+                left: 25px;
+            }
+            .JT{
+                position: relative;
+                left: 10px;
+            }
+            .EK{
+                position: relative;
+                left: -20px;
+            }
+        }
+    }
+    .side{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        right: 0;
+        width: 30%;
+        padding: 3rem;
+        .result{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            // padding: 0.4rem;
+            border: solid 9px rgb(11, 158, 97);
+            border-radius: 2rem;
+            background-color: rgb(0, 0, 0);
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+            p{
+                padding: 0.25rem;
+            }
+            .LR{
+                border-radius: 2rem 0 0 2rem;
+                background-color: black;
+            }
+            .LRName{
+                background-color: var(--leftTeam);
+                margin-right: 0.2rem;
+            }
+            .RR{
+                border-radius: 0 2rem 2rem 0;
+                background-color: black;
+            }
+            .RRName{
+                background-color: var(--rightTeam);
+            }
+        }
+    }
+}
+
 @keyframes fade {
     0%{
         opacity: 0%;

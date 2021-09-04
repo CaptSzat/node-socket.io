@@ -8,29 +8,41 @@
     <link rel="stylesheet" href="./cstyle.css">
 </head>
 <body>
-    <button id="Reset">Reset</button>
-    <button id="hideScore">Hide Scoreboard</button>
+    <div class="center">
+        <button id="Reset">Reset</button>
+        <button id="hideScore">Hide Scoreboard</button>
+    </div>
     <div class="inner">
         <div class="TLScore">
             <button id="TLScore1">Left Score +1</button>
             <button id="TLWin">Left Win</button>
             <button id="showL">Show/Hide Left</button>
+            <div class="RForm">
+            <p>Right Name</p><input type="text" id="RName"><button id="SetRName">Set Right Name</button>
+            </div>
         </div>
         <div class="TRScore">
             <button id="TRScore1">Right Score +1</button>
             <button id="TRWin">Right Win</button>
             <button id="showR">Show/Hide Right</button>
+            <div class="LForm">
+                <p>Left Name</p><input type="text" id="LName"><button id="SetLName">Set Left Name</button>
+            </div>
         </div>
     </div>
     <div class="commentary">
+        <p>Commentary</p>
         <button id="show">Show/Hide</button>
     </div>
-    <input type="text" id="welcome">
-    <button id="ShowTextBot">Show Bottom text</button>
+    <div class="bottomText">
+        <input type="text" id="welcome">
+        <button id="ShowTextBot">Show Bottom text</button>
+    </div>
+    <div class="interlude">
+        <button id="ShowInterlude">Interlude</button>
+    </div>
     <!-- <p id="server-time"></p> -->
     <br>
-    <p>Right Name</p><input type="text" id="RName"><button id="SetRName">Set Right Name</button>
-    <p>Left Name</p><input type="text" id="LName"><button id="SetLName">Set Left Name</button>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./control.js"></script>
 </body>

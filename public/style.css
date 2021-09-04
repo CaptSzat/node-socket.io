@@ -166,6 +166,7 @@
   -webkit-animation: fade 3s;
           animation: fade 3s;
   opacity: 1;
+  z-index: 20;
 }
 
 .commentary::after {
@@ -269,6 +270,7 @@
   -webkit-transition: 1s ease-in-out, color 0s ease;
   transition: 1s ease-in-out, color 0s ease;
   opacity: 0;
+  z-index: 20;
 }
 
 .LTR p {
@@ -304,6 +306,7 @@
   -webkit-transition: 1s ease-in-out, color 0s ease;
   transition: 1s ease-in-out, color 0s ease;
   opacity: 0;
+  z-index: 20;
 }
 
 .RTR p {
@@ -389,6 +392,7 @@
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
   padding: 10px 100px 10px 100px;
+  z-index: 30;
 }
 
 .hidebot {
@@ -403,6 +407,211 @@
           transform: skewX(-15deg) translateY(0px);
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
+}
+
+.ShowInterlude {
+  position: absolute;
+  height: 1080px;
+  width: 1920px;
+  -webkit-transform: translate(1080px, 1920px);
+          transform: translate(1080px, 1920px);
+  background-color: #0c694a;
+  z-index: 40;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: 2s ease-in-out;
+  transition: 2s ease-in-out;
+}
+
+.interlude {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1080px;
+  width: 1920px;
+  background-color: #0c694a;
+  z-index: 40;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.interlude h1 {
+  position: absolute;
+  top: 20px;
+  font-size: 2rem;
+}
+
+.interlude .middle {
+  position: absolute;
+  left: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70%;
+}
+
+.interlude .middle .faces {
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 1rem;
+}
+
+.interlude .middle .faces .person {
+  width: 50%;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #083a29;
+  border: 9px solid #09a16e;
+}
+
+.interlude .middle .faces .person img {
+  width: 128px;
+}
+
+.interlude .middle .cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0.1rem;
+  width: 50%;
+  background-color: #0099ff;
+  border: solid 9px #1b6ac5;
+}
+
+.interlude .middle .cards p {
+  font-size: 1.1rem;
+}
+
+.interlude .middle .cards p span {
+  font-size: 0.8rem;
+  color: #1b0d97;
+}
+
+.interlude .middle .cards .JD {
+  position: relative;
+  left: 25px;
+}
+
+.interlude .middle .cards .JT {
+  position: relative;
+  left: 10px;
+}
+
+.interlude .middle .cards .EK {
+  position: relative;
+  left: -20px;
+}
+
+.interlude .side {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  right: 0;
+  width: 30%;
+  padding: 3rem;
+}
+
+.interlude .side .result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 9px #0b9e61;
+  border-radius: 2rem;
+  background-color: black;
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+}
+
+.interlude .side .result p {
+  padding: 0.25rem;
+}
+
+.interlude .side .result .LR {
+  border-radius: 2rem 0 0 2rem;
+  background-color: black;
+}
+
+.interlude .side .result .LRName {
+  background-color: var(--leftTeam);
+  margin-right: 0.2rem;
+}
+
+.interlude .side .result .RR {
+  border-radius: 0 2rem 2rem 0;
+  background-color: black;
+}
+
+.interlude .side .result .RRName {
+  background-color: var(--rightTeam);
 }
 
 @-webkit-keyframes fade {

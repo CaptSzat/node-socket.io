@@ -15,6 +15,20 @@ const server = express()
 
 const io = socketIO(server);
 
+var showTextBot = false;
+  var text = "Welcome to RLC3";
+  var HideScoreboard = false;
+  var TLWins = 0;
+  var TRWins = 0;
+  var ScoreL = 0;
+  var ScoreR = 0;
+  var CommentBox = "";
+  var ShowL = false;
+  var ShowR = true;
+  var LName = "Jack";
+  var RName = "Thomas";
+
+
 io.on('connection', (socket) => {
   console.log('Client connected');
   socket.on('disconnect', () => console.log('Client disconnected'));
@@ -31,12 +45,19 @@ io.on('connection', (socket) => {
   socket.on('CommentBox', (data) => io.emit('CommentBox', (data)));
   socket.on('ShowL', (data) => io.emit('ShowL', (data)));
   socket.on('ShowR', (data) => io.emit('ShowR', (data)));
+  socket.on('ShowInterlude', (data) => io.emit('ShowInterlude', (data)));
   socket.on('LName', (data) => {
     console.log(data);
     io.emit('LName', (data))});
   socket.on('RName', (data) => {
     console.log(data);
     io.emit('RName', (data))});
+    //On Connection
+  // io.emit('HideScoreboard', (HideScoreboard));
+  // io.emit('TLWins', (TLWins));
+  // io.emit('TRWins', (TRWins));
+  // io.emit('RName', (RName));
+  // io.emit('LName', (LName));
 });
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);

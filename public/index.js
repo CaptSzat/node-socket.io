@@ -5,14 +5,30 @@ let socket = io();
 //   el = document.getElementById('server-time');
 //   el.innerHTML = 'Server time: ' + timeString;
 // });
+/* <div class="result">Hello</div> */
+
+// document.getElementById('sideResult').innerHTML = "gi";
+var LName = "Joe";
+var RName = "Tim"
+socket.on('ShowInterlude', data => {
+  if(data === true){
+    document.getElementById('interlude').classList.add('showInterlude');
+    document.getElementById('interlude').classList.remove('interlude');
+  }else{
+    document.getElementById('interlude').classList.add('interlude');
+    document.getElementById('interlude').classList.remove('showInterlude');
+  }
+});
 socket.on('LName', data => {
   console.log(data);
   document.getElementById('LName').innerHTML = data;
+  LName = data;
 });
 
 socket.on('RName', data => {
   console.log(data);
   document.getElementById('RName').innerHTML = data;
+  RName = data;
 });
 
 socket.on('text', (text) => {
