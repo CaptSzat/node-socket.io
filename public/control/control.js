@@ -81,14 +81,14 @@ socket.on('results', data => {
   console.log("Results");
   console.log(results);
 });
-let G1L = document.getElementById("G1L").value;
-let G1R = document.getElementById("G1R").value;
-let G2L = document.getElementById("G2L").value;
-let G2R = document.getElementById("G2R").value;
-let G3L = document.getElementById("G3L").value;
-let G3R = document.getElementById("G3R").value;
-let G4L = document.getElementById("G4L").value;
-let G4R = document.getElementById("G4R").value;
+var G1L = document.getElementById("G1L").value;
+var G1R = document.getElementById("G1R").value;
+var G2L = document.getElementById("G2L").value;
+var G2R = document.getElementById("G2R").value;
+var G3L = document.getElementById("G3L").value;
+var G3R = document.getElementById("G3R").value;
+var G4L = document.getElementById("G4L").value;
+var G4R = document.getElementById("G4R").value;
 
 G1.addEventListener('click', function() {
   results.game1.left = G1L;
