@@ -93,6 +93,7 @@ var G4R = document.getElementById("G4R").value;
 
 
 G1.addEventListener('click', function() {
+  console.log("Hi");
   console.log(G1L);
   results.game1.left = G1L;
   results.game1.right = G1R;
