@@ -19,6 +19,7 @@ socket.on('results', data => {
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game1.right + '</p>' +
 '</div><br>';
      data.game1.done = false;
+     socket.emit('results', data);
     }
     if(data.game2.done === true){
       document.getElementById('sideResult').innerHTML += '<div class="result" id="gm2">' +
@@ -27,6 +28,7 @@ socket.on('results', data => {
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game2.right + '</p>' +
 '</div><br>';
       data.game2.done = false;
+      socket.emit('results', data);
     }
     if(data.game3.done === true){
       document.getElementById('sideResult').innerHTML += '<div class="result" id="gm3">' +
@@ -35,6 +37,7 @@ socket.on('results', data => {
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game3.right + '</p>' +
 '</div><br>';
       data.game3.done = false;
+      socket.emit('results', data);
     }
     if(data.game4.done === true){
       document.getElementById('sideResult').innerHTML += '<div class="result" id="gm4">' +
@@ -43,13 +46,13 @@ socket.on('results', data => {
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game4.right + '</p>' +
 '</div><br>';
       data.game4.done = false;
+      socket.emit('results', data);
     }
     if(data.clear === true){
       document.getElementById('sideResult').innerHTML = "";
       data.clear = false;
       socket.emit('results', data.clear)
     }
-    socket.emit('results', data);
     console.log(data);
 });
 
