@@ -71,12 +71,12 @@ G1.addEventListener('click', function() {
     socket.emit('G1', false);
     localStorage.setItem('G1',false);
     results.game1.done = false;
-    io.emit('results', results);
+    socket.emit('results', results);
   }else{
     socket.emit('G1', true);
     localStorage.setItem('G1', true);
     results.game1.done = true;
-    io.emit('results', results);
+    socket.emit('results', results);
   }
 });
 
@@ -89,12 +89,12 @@ G2.addEventListener('click', function() {
     socket.emit('G2', false);
     localStorage.setItem('G2',false);
     results.game2.done = false;
-    io.emit('results', results);
+    socket.emit('results', results);
   }else{
     socket.emit('G2', true);
     localStorage.setItem('G2', true);
     results.game2.done = true;
-    io.emit('results', results);
+    socket.emit('results', results);
   }
 });
 
@@ -107,12 +107,12 @@ G3.addEventListener('click', function() {
     socket.emit('G3', false);
     localStorage.setItem('G3',false);
     results.game3.done = false;
-    io.emit('results', results);
+    socket.emit('results', results);
   }else{
     socket.emit('G3', true);
     localStorage.setItem('G3', true);
     results.game3.done = true;
-    io.emit('results', results);
+    socket.emit('results', results);
   }
 });
 
@@ -125,12 +125,12 @@ G4.addEventListener('click', function() {
     socket.emit('G4', false);
     localStorage.setItem('G4',false);
     results.game4.done = false;
-    io.emit('results', results);
+    socket.emit('results', results);
   }else{
     socket.emit('G4', true);
     localStorage.setItem('G4', true);
     results.game4.done = true;
-    io.emit('results', results);
+    socket.emit('results', results);
   }
 });
 

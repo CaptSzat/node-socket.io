@@ -12,7 +12,6 @@ var LName = "Joe";
 var RName = "Tim"
 
 socket.on('results', data => {
- 
     console.log(data.game1.done);
 });
 
