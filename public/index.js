@@ -11,6 +11,7 @@ let socket = io();
 var LName = "Joe";
 var RName = "Tim"
 socket.on('ShowInterlude', data => {
+  console.log("check" + data);
   if(data === true){
     document.getElementById('interlude').classList.remove('showInterlude');
     document.getElementById('interlude').classList.add('interlude');
