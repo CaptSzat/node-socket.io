@@ -39,7 +39,7 @@ let G1 = document.getElementById("G1");
 let G2 = document.getElementById("G2");
 let G3 = document.getElementById("G3");
 let G4 = document.getElementById("G4");
-
+let clear = document.getElementById("clear");
 var results = {
   game1: {
     done: true,
@@ -60,8 +60,26 @@ var results = {
     done: false,
     left: 0,
     right: 0
-  }
+  },
+  clear: false
 };
+
+clear.addEventListener('click', function() {
+  if(results.clear){
+    results.clear = false;
+    localStorage.setItem('clear',false);
+    socket.emit('results', results);
+  }else{
+    results.clear = true;
+    localStorage.setItem('clear', true);
+    socket.emit('results', results);
+  }
+});
+
+socket.on('results', data => {
+  results.clear = data.clear;
+});
+
 G1.addEventListener('click', function() {
   let left = document.getElementById("G1L").value;
   let right = document.getElementById("G1R").value;
