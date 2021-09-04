@@ -14,12 +14,12 @@ socket.on('ShowInterlude', data => {
   console.log("check" + data);
   if(data === true){
     document.getElementById('interlude').classList.remove('showInterlude');
-    document.getElementById('interlude').classList.add('interlude');
+    document.getElementById('interlude').classList.add('hideInterlude');
     console.log(data);
   }
   if(data === false){
-    document.getElementById('interlude').classList.remove('interlude');
     document.getElementById('interlude').classList.add('showInterlude');
+    document.getElementById('interlude').classList.remove('hideInterlude');
   }
 });
 socket.on('LName', data => {

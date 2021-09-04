@@ -287,23 +287,23 @@
     transition: 1s ease-in-out;
 }
 .ShowInterlude{
-    position: absolute;
-    height: 1080px;
-    width: 1920px;
+    transform: translate(0px,0px);
+    // background-color: rgb(12, 105, 74);
+    // z-index: 40;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    transition: 2s ease-in-out;
+}
+.HideInterlude{
     transform: translate(1080px,1920px);
-    background-color: rgb(12, 105, 74);
-    z-index: 40;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     transition: 2s ease-in-out;
 }
 .interlude{
     position: absolute;
     left: 0;
     top: 0;
-    transform: translate(0px,0px);
     height: 1080px;
     width: 1920px;
     background-color: rgb(12, 105, 74);

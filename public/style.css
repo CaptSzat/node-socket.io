@@ -410,26 +410,15 @@
 }
 
 .ShowInterlude {
-  position: absolute;
-  height: 1080px;
-  width: 1920px;
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+  -webkit-transition: 2s ease-in-out;
+  transition: 2s ease-in-out;
+}
+
+.HideInterlude {
   -webkit-transform: translate(1080px, 1920px);
           transform: translate(1080px, 1920px);
-  background-color: #0c694a;
-  z-index: 40;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-transition: 2s ease-in-out;
   transition: 2s ease-in-out;
 }
@@ -438,8 +427,6 @@
   position: absolute;
   left: 0;
   top: 0;
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
   height: 1080px;
   width: 1920px;
   background-color: #0c694a;
