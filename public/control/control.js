@@ -71,7 +71,11 @@ clear.addEventListener('click', function() {
 });
 
 socket.on('results', data => {
-  results = data;
+  results.game1.done = data.game1.done;
+  results.game2.done = data.game2.done;
+  results.game3.done = data.game3.done;
+  results.game4.done = data.game4.done;
+  results.clear = data.clear;
 });
 let G1L = document.getElementById("G1L").value;
 let G1R = document.getElementById("G1R").value;
