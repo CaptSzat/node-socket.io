@@ -12,35 +12,35 @@ var LName = "Joe";
 var RName = "Tim"
 
 socket.on('results', data => {
-    if(data.game1.done){
+    if(data.game1.done === true){
       document.getElementById('sideResult').innerHTML += '<div class="result" id="gm1">' +
 '<p class="LR">' + data.game1.left + '</p><p class="LRName">' + LName + '</p>'
 +
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game1.right + '</p>' +
 '</div><br>';
     }
-    if(data.game2.done){
+    if(data.game2.done === true){
       document.getElementById('sideResult').innerHTML += '<div class="result" id="gm2">' +
 '<p class="LR">' + data.game2.left + '</p><p class="LRName">' + LName + '</p>'
 +
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game2.right + '</p>' +
 '</div><br>';
     }
-    if(data.game3.done){
+    if(data.game3.done === true){
       document.getElementById('sideResult').innerHTML += '<div class="result" id="gm3">' +
 '<p class="LR">' + data.game3.left + '</p><p class="LRName">' + LName + '</p>'
 +
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game3.right + '</p>' +
 '</div><br>';
     }
-    if(data.game4.done){
+    if(data.game4.done === true){
       document.getElementById('sideResult').innerHTML += '<div class="result" id="gm4">' +
 '<p class="LR">' + data.game4.left + '</p><p class="LRName">' + LName + '</p>'
 +
 '<p class="RRName">' + RName + '</p><p class="RR">' + data.game4.right + '</p>' +
 '</div><br>';
     }
-    if(data.clear){
+    if(data.clear === true){
       document.getElementById('sideResult').innerHTML = "";
       data.clear = false;
       socket.emit('results', data.clear)
