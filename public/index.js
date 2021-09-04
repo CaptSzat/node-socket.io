@@ -16,7 +16,8 @@ socket.on('ShowInterlude', data => {
     document.getElementById('interlude').classList.remove('showInterlude');
     document.getElementById('interlude').classList.add('interlude');
     console.log(data);
-  }else{
+  }
+  if(data === false){
     document.getElementById('interlude').classList.add('interlude');
     document.getElementById('interlude').classList.remove('showInterlude');
   }
