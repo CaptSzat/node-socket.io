@@ -45,6 +45,7 @@ io.on('connection', (socket) => {
   socket.on('CommentBox', (data) => io.emit('CommentBox', (data)));
   socket.on('ShowL', (data) => io.emit('ShowL', (data)));
   socket.on('ShowR', (data) => io.emit('ShowR', (data)));
+  socket.on('Result', (data) => io.emit('Result', (data)));
   socket.on('ShowInterlude', (data) => io.emit('ShowInterlude', (data)));
   socket.on('LName', (data) => {
     console.log(data);

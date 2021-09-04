@@ -10,6 +10,18 @@ let socket = io();
 // document.getElementById('sideResult').innerHTML = "gi";
 var LName = "Joe";
 var RName = "Tim"
+
+socket.on('Result', data => {
+if(data === true){
+  document.getElementById('sideResult').classList.remove('hideThing');
+  document.getElementById('sideResult').classList.add('showThing');
+}
+if(data === false){
+  document.getElementById('sideResult').classList.add('hideThing');
+  document.getElementById('sideResult').classList.remove('showThing');
+}
+});
+
 socket.on('ShowInterlude', data => {
   console.log("check" + data);
   if(data === true){

@@ -23,6 +23,7 @@ let LName = document.getElementById("LName");
 let SetLName = document.getElementById("SetLName");
 let Interlude = document.getElementById("ShowInterlude");
 let InterludeHide = document.getElementById("HideInterlude");
+let Result = document.getElementById("Result");
 // let ShowInterlude = false;
 let TRWins = 0;
 let TLWins = 0;
@@ -32,7 +33,19 @@ localStorage.setItem('TLWins', TLWins);
 localStorage.setItem('TRWins', TRWins);
 localStorage.setItem('ScoreL', ScoreL);
 localStorage.setItem('ScoreR', ScoreR);
+localStorage.setItem('Result',false);
 
+
+
+Result.addEventListener('click', function() {
+  if(localStorage.getItem('Result') === "true"){
+    socket.emit('Result', false);
+    localStorage.setItem('Result',false);
+  }else{
+    socket.emit('Result', true);
+    localStorage.setItem('Result', true);
+  }
+});
 Interlude.addEventListener('click', function() {
   // console.log("Used");
   document.getElementById('interlude').classList.add('show');
