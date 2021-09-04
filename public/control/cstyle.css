@@ -82,8 +82,8 @@ input{
     position: absolute;
     left: 0;
     top: 0;
-    width: 1920px;
-    height: 1080px;
+    width: 100vw;
+    height: 100vh;
     background-color: rgb(25, 52, 75);
 }
 .interludeScreen > button {
