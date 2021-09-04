@@ -71,6 +71,7 @@ G1.addEventListener('click', function() {
     socket.emit('G1', false);
     localStorage.setItem('G1',false);
     results.game1.done = false;
+    console.log(results);
     socket.emit('results', results);
   }else{
     socket.emit('G1', true);
