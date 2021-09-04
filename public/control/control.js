@@ -65,15 +65,9 @@ var results = {
 };
 
 clear.addEventListener('click', function() {
-  if(results.clear){
-    results.clear = false;
-    localStorage.setItem('clear',false);
-    socket.emit('results', results);
-  }else{
     results.clear = true;
     localStorage.setItem('clear', true);
     socket.emit('results', results);
-  }
 });
 
 socket.on('results', data => {
