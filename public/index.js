@@ -18,8 +18,8 @@ socket.on('ShowInterlude', data => {
     console.log(data);
   }
   if(data === false){
-    document.getElementById('interlude').classList.add('interlude');
-    document.getElementById('interlude').classList.remove('showInterlude');
+    document.getElementById('interlude').classList.remove('interlude');
+    document.getElementById('interlude').classList.add('showInterlude');
   }
 });
 socket.on('LName', data => {
