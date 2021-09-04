@@ -73,12 +73,17 @@ clear.addEventListener('click', function() {
 socket.on('results', data => {
   results = data;
 });
-
+let G1L = document.getElementById("G1L").value;
+let G1R = document.getElementById("G1R").value;
+let G2L = document.getElementById("G2L").value;
+let G2R = document.getElementById("G2R").value;
+let G3L = document.getElementById("G3L").value;
+let G3R = document.getElementById("G3R").value;
+let G4L = document.getElementById("G4L").value;
+let G4R = document.getElementById("G4R").value;
 G1.addEventListener('click', function() {
-  let left = document.getElementById("G1L").value;
-  let right = document.getElementById("G1R").value;
-  results.game1.left = left;
-  results.game1.right = right;
+  results.game1.left = G1L;
+  results.game1.right = G1R;
   if(localStorage.getItem('G1') === "true"){
     socket.emit('G1', false);
     localStorage.setItem('G1',false);
@@ -94,10 +99,8 @@ G1.addEventListener('click', function() {
 });
 
 G2.addEventListener('click', function() {
-  let left = document.getElementById("G2L").value;
-  let right = document.getElementById("G2R").value;
-  results.game2.left = left;
-  results.game2.right = right;
+  results.game2.left = G2L;
+  results.game2.right = G2R;
   if(localStorage.getItem('G2') === "true"){
     socket.emit('G2', false);
     localStorage.setItem('G2',false);
@@ -112,10 +115,8 @@ G2.addEventListener('click', function() {
 });
 
 G3.addEventListener('click', function() {
-  let left = document.getElementById("G3L").value;
-  let right = document.getElementById("G3R").value;
-  results.game3.left = left;
-  results.game3.right = right;
+  results.game3.left = G3L;
+  results.game3.right = G3R;
   if(localStorage.getItem('G3') === "true"){
     socket.emit('G3', false);
     localStorage.setItem('G3',false);
@@ -130,10 +131,8 @@ G3.addEventListener('click', function() {
 });
 
 G4.addEventListener('click', function() {
-  let left = document.getElementById("G4L").value;
-  let right = document.getElementById("G4R").value;
-  results.game4.left = left;
-  results.game4.right = right;
+  results.game4.left = G4L;
+  results.game4.right = G4R;
   if(localStorage.getItem('G4') === "true"){
     socket.emit('G4', false);
     localStorage.setItem('G4',false);
