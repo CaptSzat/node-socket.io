@@ -77,7 +77,7 @@ clear.addEventListener('click', function() {
 });
 
 socket.on('results', data => {
-  results.clear = data.clear;
+  results = data;
 });
 
 G1.addEventListener('click', function() {
