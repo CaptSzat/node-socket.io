@@ -33,6 +33,7 @@ localStorage.setItem('ScoreL', ScoreL);
 localStorage.setItem('ScoreR', ScoreR);
 
 Interlude.addEventListener('click', function() {
+  console.log("Used")
   if(ShowInterlude === false){
     socket.emit('ShowInterlude', true);
     ShowInterlude = true;
