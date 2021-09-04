@@ -81,20 +81,20 @@ socket.on('results', data => {
   console.log("Results");
   console.log(results);
 });
-var G1L = document.getElementById("G1L").value;
-var G1R = document.getElementById("G1R").value;
-var G2L = document.getElementById("G2L").value;
-var G2R = document.getElementById("G2R").value;
-var G3L = document.getElementById("G3L").value;
-var G3R = document.getElementById("G3R").value;
-var G4L = document.getElementById("G4L").value;
-var G4R = document.getElementById("G4R").value;
+var G1L = 0;
+var G1R = 0;
+var G2L = 0;
+var G2R = 0;
+var G3L = 0;
+var G3R = 0;
+var G4L = 0;
+var G4R = 0;
 
 
 
 G1.addEventListener('click', function() {
-  console.log("Hi");
-  console.log(G1L);
+  G1L = document.getElementById("G1L").value;
+  G1R = document.getElementById("G1R").value;
   results.game1.left = G1L;
   results.game1.right = G1R;
   console.log(results);
@@ -113,6 +113,8 @@ G1.addEventListener('click', function() {
 });
 
 G2.addEventListener('click', function() {
+  G2L = document.getElementById("G2L").value;
+G2R = document.getElementById("G2R").value;
   results.game2.left = G2L;
   results.game2.right = G2R;
   if(localStorage.getItem('G2') === "true"){
@@ -129,6 +131,8 @@ G2.addEventListener('click', function() {
 });
 
 G3.addEventListener('click', function() {
+  G3L = document.getElementById("G3L").value;
+G3R = document.getElementById("G3R").value;
   results.game3.left = G3L;
   results.game3.right = G3R;
   if(localStorage.getItem('G3') === "true"){
@@ -145,6 +149,8 @@ G3.addEventListener('click', function() {
 });
 
 G4.addEventListener('click', function() {
+  G4L = document.getElementById("G4L").value;
+G4R = document.getElementById("G4R").value;
   results.game4.left = G4L;
   results.game4.right = G4R;
   if(localStorage.getItem('G4') === "true"){
