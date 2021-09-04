@@ -89,9 +89,11 @@ let G3L = document.getElementById("G3L").value;
 let G3R = document.getElementById("G3R").value;
 let G4L = document.getElementById("G4L").value;
 let G4R = document.getElementById("G4R").value;
+
 G1.addEventListener('click', function() {
   results.game1.left = G1L;
   results.game1.right = G1R;
+  console.log(results);
   if(localStorage.getItem('G1') === "true"){
     socket.emit('G1', false);
     localStorage.setItem('G1',false);
