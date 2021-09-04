@@ -34,27 +34,27 @@ localStorage.setItem('ScoreL', ScoreL);
 localStorage.setItem('ScoreR', ScoreR);
 
 Interlude.addEventListener('click', function() {
-  console.log("Used");
+  // console.log("Used");
   document.getElementById('interlude').classList.add('show');
   document.getElementById('interlude').classList.remove('hide');
   // if(localStorage.getItem('ShowInterlude') === "true"){
-    socket.emit('ShowInterlude', false);
-    localStorage.setItem('ShowInterlude',false);
+    // socket.emit('ShowInterlude', false);
+    // localStorage.setItem('ShowInterlude',false);
   // }else{
   //   socket.emit('ShowInterlude', true);
   //   localStorage.setItem('ShowInterlude',true);
   // }
 });
 InterludeHide.addEventListener('click', function() {
-    console.log("Used");
+    // console.log("Used");
     document.getElementById('interlude').classList.remove('show');
     document.getElementById('interlude').classList.add('hide');
     // if(localStorage.getItem('ShowInterlude') === "true"){
     //   socket.emit('ShowInterlude', false);
     //   localStorage.setItem('ShowInterlude',false);
     // }else{
-      socket.emit('ShowInterlude', true);
-      localStorage.setItem('ShowInterlude',true);
+      // socket.emit('ShowInterlude', true);
+      // localStorage.setItem('ShowInterlude',true);
     // }
   // if(ShowInterlude === false){
   //   socket.emit('ShowInterlude', true);
