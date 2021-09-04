@@ -11,14 +11,14 @@ let socket = io();
 var LName = "Joe";
 var RName = "Tim"
 socket.on('ShowInterlude', data => {
-  // if(data === true){
+  if(data === true){
     document.getElementById('interlude').classList.remove('showInterlude');
     document.getElementById('interlude').classList.add('interlude');
     console.log(data);
-  // }else{
-  //   document.getElementById('interlude').classList.add('interlude');
-  //   document.getElementById('interlude').classList.remove('showInterlude');
-  // }
+  }else{
+    document.getElementById('interlude').classList.add('interlude');
+    document.getElementById('interlude').classList.remove('showInterlude');
+  }
 });
 socket.on('LName', data => {
   console.log(data);
