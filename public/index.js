@@ -11,6 +11,13 @@ let socket = io();
 var LName = "Joe";
 var RName = "Tim"
 
+socket.on('results', data => {
+  if(data.game1.done){
+    console.log("done");
+  }
+});
+
+
 socket.on('Result', data => {
 if(data === true){
   document.getElementById('sideResult').classList.remove('hideThing');

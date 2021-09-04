@@ -35,7 +35,104 @@ localStorage.setItem('ScoreL', ScoreL);
 localStorage.setItem('ScoreR', ScoreR);
 localStorage.setItem('Result',false);
 
+let G1 = document.getElementById("G1");
+let G2 = document.getElementById("G2");
+let G3 = document.getElementById("G3");
+let G4 = document.getElementById("G4");
 
+var results = {
+  game1: {
+    done: true,
+    left: 0,
+    right: 0
+  },
+  game2: {
+    done: false,
+    left: 0,
+    right: 0
+  },
+  game3: {
+    done: false,
+    left: 0,
+    right: 0
+  },
+  game4: {
+    done: false,
+    left: 0,
+    right: 0
+  }
+};
+G1.addEventListener('click', function() {
+  let left = document.getElementById("G1L").value;
+  let right = document.getElementById("G1R").value;
+  results.game1.left = left;
+  results.game1.right = right;
+  if(localStorage.getItem('G1') === "true"){
+    socket.emit('G1', false);
+    localStorage.setItem('G1',false);
+    results.game1.done = false;
+    io.emit('results', results);
+  }else{
+    socket.emit('G1', true);
+    localStorage.setItem('G1', true);
+    results.game1.done = true;
+    io.emit('results', results);
+  }
+});
+
+G2.addEventListener('click', function() {
+  let left = document.getElementById("G2L").value;
+  let right = document.getElementById("G2R").value;
+  results.game2.left = left;
+  results.game2.right = right;
+  if(localStorage.getItem('G2') === "true"){
+    socket.emit('G2', false);
+    localStorage.setItem('G2',false);
+    results.game2.done = false;
+    io.emit('results', results);
+  }else{
+    socket.emit('G2', true);
+    localStorage.setItem('G2', true);
+    results.game2.done = true;
+    io.emit('results', results);
+  }
+});
+
+G3.addEventListener('click', function() {
+  let left = document.getElementById("G3L").value;
+  let right = document.getElementById("G3R").value;
+  results.game3.left = left;
+  results.game3.right = right;
+  if(localStorage.getItem('G3') === "true"){
+    socket.emit('G3', false);
+    localStorage.setItem('G3',false);
+    results.game3.done = false;
+    io.emit('results', results);
+  }else{
+    socket.emit('G3', true);
+    localStorage.setItem('G3', true);
+    results.game3.done = true;
+    io.emit('results', results);
+  }
+});
+
+G4.addEventListener('click', function() {
+  let left = document.getElementById("G4L").value;
+  let right = document.getElementById("G4R").value;
+  results.game4.left = left;
+  results.game4.right = right;
+  if(localStorage.getItem('G4') === "true"){
+    socket.emit('G4', false);
+    localStorage.setItem('G4',false);
+    results.game4.done = false;
+    io.emit('results', results);
+  }else{
+    socket.emit('G4', true);
+    localStorage.setItem('G4', true);
+    results.game4.done = true;
+    io.emit('results', results);
+  }
+});
 
 Result.addEventListener('click', function() {
   if(localStorage.getItem('Result') === "true"){
