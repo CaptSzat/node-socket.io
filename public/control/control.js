@@ -22,7 +22,7 @@ let SetRName = document.getElementById("SetRName");
 let LName = document.getElementById("LName");
 let SetLName = document.getElementById("SetLName");
 let Interlude = document.getElementById("ShowInterlude");
-let ShowInterlude = false;
+// let ShowInterlude = false;
 let TRWins = 0;
 let TLWins = 0;
 let ScoreR = 0;
@@ -33,14 +33,21 @@ localStorage.setItem('ScoreL', ScoreL);
 localStorage.setItem('ScoreR', ScoreR);
 
 Interlude.addEventListener('click', function() {
-  console.log("Used")
-  if(ShowInterlude === false){
-    socket.emit('ShowInterlude', true);
-    ShowInterlude = true;
-  }else{
+  console.log("Used");
+  if(localStorage.getItem('ShowInterlude') === "true"){
     socket.emit('ShowInterlude', false);
-    ShowInterlude = false;
+    localStorage.setItem('ShowInterlude',false);
+  }else{
+    socket.emit('ShowInterlude', true);
+    localStorage.setItem('ShowInterlude',true);
   }
+  // if(ShowInterlude === false){
+  //   socket.emit('ShowInterlude', true);
+  //   ShowInterlude = true;
+  // }else{
+  //   socket.emit('ShowInterlude', false);
+  //   ShowInterlude = false;
+  // }
 });
 SetRName.addEventListener('click', function() {
   let text = RName.value;
@@ -58,8 +65,6 @@ SetLName.addEventListener('click', function() {
     socket.emit('LName', text);
   }
 });
-
-
 
 
 
