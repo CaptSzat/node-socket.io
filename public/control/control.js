@@ -55,7 +55,7 @@ InterludeHide.addEventListener('click', function() {
     // }else{
       socket.emit('ShowInterlude', true);
       localStorage.setItem('ShowInterlude',true);
-    }
+    // }
   // if(ShowInterlude === false){
   //   socket.emit('ShowInterlude', true);
   //   ShowInterlude = true;
