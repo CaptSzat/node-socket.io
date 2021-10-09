@@ -13,6 +13,29 @@ button{
 body{
     background-color: #333333;
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* align-items: center; */
+}
+.row{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.column{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.inner{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .center{
     display: flex;
@@ -88,4 +111,11 @@ input{
 }
 .interludeScreen > button {
     margin: 10px;
+}
+.question{
+    background-color: #333333;
+    padding: 1rem;
+}
+.question > select{
+    background-color: #0c0c0c;
 }

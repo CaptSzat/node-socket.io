@@ -1,3 +1,4 @@
+// require('fs');
 let socket = io();
 // let el;
 
@@ -6,309 +7,307 @@ let socket = io();
 //   el.innerHTML = 'Server time LETS GOOO: ' + timeString;
 // });
 
-let SR1 = document.getElementById("TRScore1");
-let SL1 = document.getElementById("TLScore1");
-let TLW = document.getElementById("TLWin");
-let TRW = document.getElementById("TRWin");
-let Res = document.getElementById("Reset");
-let Show = document.getElementById("show");
-let ShowL = document.getElementById("showL");
-let ShowR = document.getElementById("showR");
-let HideScoreboard = document.getElementById("hideScore");
-let ShowTextBot = document.getElementById("ShowTextBot");
-let Welcome = document.getElementById("welcome");
-let RName = document.getElementById("RName");
-let SetRName = document.getElementById("SetRName");
-let LName = document.getElementById("LName");
-let SetLName = document.getElementById("SetLName");
-let Interlude = document.getElementById("ShowInterlude");
-let InterludeHide = document.getElementById("HideInterlude");
-let Result = document.getElementById("Result");
-// let ShowInterlude = false;
-let TRWins = 0;
-let TLWins = 0;
-let ScoreR = 0;
-let ScoreL = 0;
-localStorage.setItem('TLWins', TLWins);
-localStorage.setItem('TRWins', TRWins);
-localStorage.setItem('ScoreL', ScoreL);
-localStorage.setItem('ScoreR', ScoreR);
-localStorage.setItem('Result',false);
+// let SR1 = document.getElementById("TRScore1");
 
-let G1 = document.getElementById("G1");
-let G2 = document.getElementById("G2");
-let G3 = document.getElementById("G3");
-let G4 = document.getElementById("G4");
-let clear = document.getElementById("clear");
-var results = {
-  game1: {
-    done: true,
-    left: 0,
-    right: 0
+
+var json = (function() {
+  var json = null;
+  $.ajax({
+    'async': false,
+    'global': false,
+    'url': "./questions.json",
+    'dataType': "json",
+    'success': function(data) {
+      json = data;
+    }
+  });
+  return json;
+})();
+
+// let ans = JSON.parse(json);
+select = document.getElementById("question");
+// for (var i = 0; i < json.length; i++) {
+//     var option = document.createElement("option");
+//     option.innerHTML = json[i].text;
+//     // option.textContent = name;
+//     select.appendChild(option);
+// };
+var txt = "Question: ";
+txt += '<select  id="dropdown" onchange="return showAnswer();">'
+for (var i = 0; i < json.length; i++) {
+    txt += "<option " + 'value="'+ i +'">' + json[i].text + "</option>";
+}
+select.innerHTML = txt;
+console.log(json);
+console.log(json[0].text);
+
+var score = {
+  teamA: 0,
+  teamB: 0,
+  currentScore: 0,
+  wrong: 0,
+  question: "Get Ready!",
+  nameA: "A",
+  nameB: "B",
+  a1: {
+    answer: "a1",
+    points: 0,
+    show: false
   },
-  game2: {
-    done: false,
-    left: 0,
-    right: 0
+  a2: {
+    answer: "a2",
+    points: 0,
+    show: false
   },
-  game3: {
-    done: false,
-    left: 0,
-    right: 0
+  a3: {
+    answer: "a3",
+    points: 0,
+    show: false
   },
-  game4: {
-    done: false,
-    left: 0,
-    right: 0
+  a4: {
+    answer: "a4",
+    points: 0,
+    show: false
   },
-  clear: false
+  a5: {
+    answer: "a5",
+    points: 0,
+    show: false
+  },
+  a6: {
+    answer: "a6",
+    points: 0,
+    show: false,
+    hide: false
+  },
 };
 
-clear.addEventListener('click', function() {
-    results.clear = true;
-    localStorage.setItem('clear', true);
-    socket.emit('results', results);
-});
+function teamUpdate(){
+  score.nameA = document.getElementById('teamA');
+  score.nameB = document.getElementById('teamB');
+  console.log("WHY DOOO");
+  socket.emit('data', score);
+}
 
-socket.on('results', data => {
+$('#updateName').bind('click', function() {
+  score.nameA = document.getElementById('nameA').value;
+  score.nameB = document.getElementById('nameB').value;
   console.log("data");
-  console.log(data);
-  results.game1.done = data.game1.done;
-  results.game2.done = data.game2.done;
-  results.game3.done = data.game3.done;
-  results.game4.done = data.game4.done;
-  results.clear = data.clear;
-  console.log("Results");
-  console.log(results);
+  socket.emit('data', score);
 });
-var G1L = 0;
-var G1R = 0;
-var G2L = 0;
-var G2R = 0;
-var G3L = 0;
-var G3R = 0;
-var G4L = 0;
-var G4R = 0;
+
+$('#updateScore').bind('click', function() {
+  score.teamA = document.getElementById('pointsA').value;
+  score.teamB = document.getElementById('pointsB').value;
+  console.log("data");
+  socket.emit('data', score);
+});
 
 
+function showAnswer(){
+  let quest = document.getElementById('dropdown');
+  console.log(quest.value);
+  console.log(score.nameA);
+  document.getElementById('a1').innerHTML = json[quest.value].answers[0];
+  document.getElementById('a2').innerHTML = json[quest.value].answers[1];
+  document.getElementById('a3').innerHTML = json[quest.value].answers[2];
+  document.getElementById('a4').innerHTML = json[quest.value].answers[3];
+  document.getElementById('a5').innerHTML = json[quest.value].answers[4];
+  document.getElementById('a6').innerHTML = json[quest.value].answers[5];
 
-G1.addEventListener('click', function() {
-  G1L = document.getElementById("G1L").value;
-  G1R = document.getElementById("G1R").value;
-  results.game1.left = G1L;
-  results.game1.right = G1R;
-  console.log(results);
-  if(localStorage.getItem('G1') === "true"){
-    socket.emit('G1', false);
-    localStorage.setItem('G1',false);
-    results.game1.done = false;
-    console.log(results);
-    socket.emit('results', results);
+  score.question = json[quest.value].text;
+
+  score.a1.answer = json[quest.value].answers[0];
+  score.a2.answer = json[quest.value].answers[1];
+  score.a3.answer = json[quest.value].answers[2];
+  score.a4.answer = json[quest.value].answers[3];
+  score.a5.answer = json[quest.value].answers[4];
+  score.a6.answer = json[quest.value].answers[5];
+
+  score.a1.points = json[quest.value].results[0];
+  score.a2.points = json[quest.value].results[1];
+  score.a3.points = json[quest.value].results[2];
+  score.a4.points = json[quest.value].results[3];
+  score.a5.points = json[quest.value].results[4];
+  score.a6.points = json[quest.value].results[5];
+  score.a1.show = false;
+  score.a2.show = false;
+  score.a3.show = false;
+  score.a4.show = false;
+  score.a5.show = false;
+  score.a6.show = false;
+  console.log(json[quest.value].answers.length);
+  if(json[quest.value].answers.length == 5){
+    score.a6.hide = true;
   }else{
-    socket.emit('G1', true);
-    localStorage.setItem('G1', true);
-    results.game1.done = true;
-    socket.emit('results', results);
+    score.a6.hide = false;
   }
+  socket.emit('data', score);
+};
+
+
+
+socket.on('connect', () => {
+  console.log("sent");
+  socket.emit('data', score);
 });
 
-G2.addEventListener('click', function() {
-  G2L = document.getElementById("G2L").value;
-G2R = document.getElementById("G2R").value;
-  results.game2.left = G2L;
-  results.game2.right = G2R;
-  if(localStorage.getItem('G2') === "true"){
-    socket.emit('G2', false);
-    localStorage.setItem('G2',false);
-    results.game2.done = false;
-    socket.emit('results', results);
-  }else{
-    socket.emit('G2', true);
-    localStorage.setItem('G2', true);
-    results.game2.done = true;
-    socket.emit('results', results);
+socket.emit('data', score);
+$('#clear').bind('click', function() {
+  score.a1.show = false;
+  score.a2.show = false;
+  score.a3.show = false;
+  score.a4.show = false;
+  score.a5.show = false;
+  score.a6.show = false;
+  score.currentScore = 0;
+  score.wrong = 0;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#show').bind('click', function() {
+  score.a1.show = true;
+  score.a2.show = true;
+  score.a3.show = true;
+  score.a4.show = true;
+  score.a5.show = true;
+  score.a6.show = true;
+  score.wrong = 0;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#hide').bind('click', function() {
+  score.a1.show = false;
+  score.a2.show = false;
+  score.a3.show = false;
+  score.a4.show = false;
+  score.a5.show = false;
+  score.a6.show = false;
+  score.wrong = 0;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#reset').bind('click', function() {
+  score.teamA = 0;
+  score.teamB = 0;
+  score.currentScore = 0;
+  score.wrong = 0;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#teamA').bind('click', function() {
+  score.teamA += score.currentScore;
+  score.currentScore = 0;
+  score.wrong = 0;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#teamB').bind('click', function() {
+  score.teamB += score.currentScore;
+  score.currentScore = 0;
+  score.wrong = 0;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#w1').bind('click', function() {
+  score.wrong = 1;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#w2').bind('click', function() {
+  score.wrong = 2;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+$('#w3').bind('click', function() {
+  score.wrong = 3;
+  console.log("data");
+  socket.emit('data', score);
+});
+
+
+$('#a1').bind('click', function() {
+  console.log("data");
+  score.a1.show = !score.a1.show;
+  if(score.a1.show){
+    score.currentScore += score.a1.points;
   }
+  score.wrong = 0;
+  socket.emit('data', score);
 });
-
-G3.addEventListener('click', function() {
-  G3L = document.getElementById("G3L").value;
-G3R = document.getElementById("G3R").value;
-  results.game3.left = G3L;
-  results.game3.right = G3R;
-  if(localStorage.getItem('G3') === "true"){
-    socket.emit('G3', false);
-    localStorage.setItem('G3',false);
-    results.game3.done = false;
-    socket.emit('results', results);
-  }else{
-    socket.emit('G3', true);
-    localStorage.setItem('G3', true);
-    results.game3.done = true;
-    socket.emit('results', results);
+$('#a2').bind('click', function() {
+  console.log("data");
+  score.a2.show = !score.a2.show;
+  if(score.a2.show){
+    score.currentScore += score.a2.points;
   }
+  score.wrong = 0;
+  socket.emit('data', score);
 });
-
-G4.addEventListener('click', function() {
-  G4L = document.getElementById("G4L").value;
-G4R = document.getElementById("G4R").value;
-  results.game4.left = G4L;
-  results.game4.right = G4R;
-  if(localStorage.getItem('G4') === "true"){
-    socket.emit('G4', false);
-    localStorage.setItem('G4',false);
-    results.game4.done = false;
-    socket.emit('results', results);
-  }else{
-    socket.emit('G4', true);
-    localStorage.setItem('G4', true);
-    results.game4.done = true;
-    socket.emit('results', results);
+$('#a3').bind('click', function() {
+  console.log("data");
+  score.a3.show = !score.a3.show;
+  if(score.a3.show){
+    score.currentScore += score.a3.points;
   }
+  score.wrong = 0;
+  socket.emit('data', score);
 });
-
-Result.addEventListener('click', function() {
-  if(localStorage.getItem('Result') === "true"){
-    socket.emit('Result', false);
-    localStorage.setItem('Result',false);
-  }else{
-    socket.emit('Result', true);
-    localStorage.setItem('Result', true);
+$('#a4').bind('click', function() {
+  console.log("data");
+  score.a4.show = !score.a4.show;
+  if(score.a4.show){
+    score.currentScore += score.a4.points;
   }
+  score.wrong = 0;
+  socket.emit('data', score);
 });
-Interlude.addEventListener('click', function() {
-  // console.log("Used");
-  document.getElementById('interlude').classList.add('show');
-  document.getElementById('interlude').classList.remove('hide');
-  // if(localStorage.getItem('ShowInterlude') === "true"){
-    socket.emit('ShowInterlude', false);
-    localStorage.setItem('ShowInterlude',false);
-  // }else{
-  //   socket.emit('ShowInterlude', true);
-  //   localStorage.setItem('ShowInterlude',true);
-  // }
-});
-InterludeHide.addEventListener('click', function() {
-    // console.log("Used");
-    document.getElementById('interlude').classList.remove('show');
-    document.getElementById('interlude').classList.add('hide');
-    // if(localStorage.getItem('ShowInterlude') === "true"){
-    //   socket.emit('ShowInterlude', false);
-    //   localStorage.setItem('ShowInterlude',false);
-    // }else{
-      socket.emit('ShowInterlude', true);
-      localStorage.setItem('ShowInterlude',true);
-    // }
-  // if(ShowInterlude === false){
-  //   socket.emit('ShowInterlude', true);
-  //   ShowInterlude = true;
-  // }else{
-  //   socket.emit('ShowInterlude', false);
-  //   ShowInterlude = false;
-  // }
-});
-SetRName.addEventListener('click', function() {
-  let text = RName.value;
-  if(text === ''){
-    socket.emit('RName', "Sam");
-  }else{
-    socket.emit('RName', text);
+$('#a5').bind('click', function() {
+  console.log("data");
+  score.a5.show = !score.a5.show;
+  if(score.a5.show){
+    score.currentScore += score.a5.points;
   }
+  score.wrong = 0;
+  socket.emit('data', score);
 });
-SetLName.addEventListener('click', function() {
-  let text = LName.value;
-  if(text === ''){
-    socket.emit('LName', "Tom");
-  }else{
-    socket.emit('LName', text);
+$('#a6').bind('click', function() {
+  console.log("data");
+  if(!score.a6.hide){
+    score.a6.show = !score.a6.show;
+    if(score.a6.show){
+      score.currentScore += score.a6.points;
+    }
+    score.wrong = 0;
   }
+  socket.emit('data', score);
 });
+// clear.addEventListener('click', function() {
+//     score.teamA = 0;
+//     score.teamB = 0;
+//     score.currentScore = 0;
+//     socket.emit('data', score);
+// });
 
+// socket.on('score', data => {
 
-
-
-ShowTextBot.addEventListener('click', function() {
-    let text = Welcome.value;
-    if(text === ''){
-      socket.emit('text', "Welcome To RLC3");
-    }else{
-      socket.emit('text', text);
-    }
-    if(localStorage.getItem('ShowTextBot') === "true"){
-      socket.emit('ShowTextBot', false);
-      localStorage.setItem('ShowTextBot', false);
-    }else{
-      socket.emit('ShowTextBot', true);
-      localStorage.setItem('ShowTextBot', true);
-    }
-});
-
-HideScoreboard.addEventListener('click', function() {
-    if(localStorage.getItem('HideScoreboard') === "true"){
-      socket.emit('HideScoreboard', false);
-      localStorage.setItem('HideScoreboard',false);
-    }else{
-      socket.emit('HideScoreboard', true);
-      localStorage.setItem('HideScoreboard',true);
-    }
-});
-
-TLW.addEventListener('click', function() {
-    TLWins = TLWins + 1;
-    if(TLWins === 2){
-        TLWins = 0;
-    }
-    socket.emit('TLWins', TLWins);
-});
-
-TRW.addEventListener('click', function() {
-    TRWins = TRWins + 1;
-    if(TRWins === 2){
-        TRWins = 0;
-    }
-    socket.emit('TRWins', TRWins);
-});
-
-SL1.addEventListener('click', function() {
-    ScoreL = ScoreL + 1;
-    socket.emit('ScoreL', ScoreL);
-});
-
-SR1.addEventListener('click', function() {
-ScoreR = ScoreR + 1;
-socket.emit('ScoreR', ScoreR);
-});
-
-Res.addEventListener('click', function() {
-    ScoreR = 0;
-    ScoreL = 0;
-    socket.emit('ScoreL', ScoreL);
-    socket.emit('ScoreR', ScoreR);
-});
-
-Show.addEventListener('click', function() {
-    if(localStorage.getItem('CommentBox') === "true"){
-      socket.emit('CommentBox', false);
-      localStorage.setItem('CommentBox', false);
-    }else{
-      socket.emit('CommentBox', true);
-      localStorage.setItem('CommentBox', true);
-    }
-});
-ShowL.addEventListener('click', function() {
-    if(localStorage.getItem('ShowL') === "true"){
-      socket.emit('ShowL', false);
-      localStorage.setItem('ShowL',false);
-    }else{
-      socket.emit('ShowL', true);
-      localStorage.setItem('ShowL', true);
-    }
-});
-ShowR.addEventListener('click', function() {
-    if(localStorage.getItem('ShowR') === "true"){
-      socket.emit('ShowR', false);
-      localStorage.setItem('ShowR', false);
-    }else{
-      socket.emit('ShowR', true);
-      localStorage.setItem('ShowR', true);
-    }
-});
+// });
+// socket.on('score', data => {
+//   console.log("data");
+//   console.log(data);
+//   results.game1.done = data.game1.done;
+//   results.game2.done = data.game2.done;
+//   results.game3.done = data.game3.done;
+//   results.game4.done = data.game4.done;
+//   results.clear = data.clear;
+//   console.log("Results");
+//   console.log(results);
+// });

@@ -1,257 +1,196 @@
 let socket = io();
-// let el;
 
-// socket.on('time', (timeString) => {
-//   el = document.getElementById('server-time');
-//   el.innerHTML = 'Server time: ' + timeString;
-// });
-/* <div class="result">Hello</div> */
+var score = {
+  teamA: 0,
+  teamB: 0,
+  currentScore: 0,
+  wrong: 0,
+  question: "Get Ready!",
+  nameA: "A",
+  nameB: "B",
+  a1: {
+    answer: "a1",
+    points: 0,
+    show: false
+  },
+  a2: {
+    answer: "a2",
+    points: 0,
+    show: false
+  },
+  a3: {
+    answer: "a3",
+    points: 0,
+    show: false
+  },
+  a4: {
+    answer: "a4",
+    points: 0,
+    show: false
+  },
+  a5: {
+    answer: "a5",
+    points: 0,
+    show: false
+  },
+  a6: {
+    answer: "a6",
+    points: 0,
+    show: false,
+    hide: false
+  },
+};
 
-// document.getElementById('sideResult').innerHTML = "gi";
-var LName = "Joe";
-var RName = "Tim"
+// $('#s1').css('z-index', '100');
+$('#a').html(score.teamA);
+$('#b').html(score.teamB);
+$('#current').html(score.currentScore);
+$('#question').html(score.question);
+socket.emit('joined');
 
-socket.on('results', data => {
-    if(data.game1.done === true){
-      document.getElementById('sideResult').innerHTML += '<div class="result" id="gm1">' +
-'<p class="LR">' + data.game1.left + '</p><p class="LRName">' + LName + '</p>'
-+
-'<p class="RRName">' + RName + '</p><p class="RR">' + data.game1.right + '</p>' +
-'</div><br>';
-     data.game1.done = false;
-     socket.emit('results', data);
-    }
-    if(data.game2.done === true){
-      document.getElementById('sideResult').innerHTML += '<div class="result" id="gm2">' +
-'<p class="LR">' + data.game2.left + '</p><p class="LRName">' + LName + '</p>'
-+
-'<p class="RRName">' + RName + '</p><p class="RR">' + data.game2.right + '</p>' +
-'</div><br>';
-      data.game2.done = false;
-      socket.emit('results', data);
-    }
-    if(data.game3.done === true){
-      document.getElementById('sideResult').innerHTML += '<div class="result" id="gm3">' +
-'<p class="LR">' + data.game3.left + '</p><p class="LRName">' + LName + '</p>'
-+
-'<p class="RRName">' + RName + '</p><p class="RR">' + data.game3.right + '</p>' +
-'</div><br>';
-      data.game3.done = false;
-      socket.emit('results', data);
-    }
-    if(data.game4.done === true){
-      document.getElementById('sideResult').innerHTML += '<div class="result" id="gm4">' +
-'<p class="LR">' + data.game4.left + '</p><p class="LRName">' + LName + '</p>'
-+
-'<p class="RRName">' + RName + '</p><p class="RR">' + data.game4.right + '</p>' +
-'</div><br>';
-      data.game4.done = false;
-      socket.emit('results', data);
-    }
-    if(data.clear === true){
-      document.getElementById('sideResult').innerHTML = "";
-      data.clear = false;
-      socket.emit('results', data.clear)
-    }
-    console.log(data);
-});
+let a1a = document.getElementById("a1a");
+let a2a = document.getElementById("a2a");
+let a3a = document.getElementById("a3a");
+let a4a = document.getElementById("a4a");
+let a5a = document.getElementById("a5a");
+let a6a = document.getElementById("a6a");
 
+let a1c = document.getElementById("a1c");
+let a2c = document.getElementById("a2c");
+let a3c = document.getElementById("a3c");
+let a4c = document.getElementById("a4c");
+let a5c = document.getElementById("a5c");
+let a6c = document.getElementById("a6c");
 
-socket.on('Result', data => {
-if(data === true){
-  document.getElementById('sideResult').classList.remove('hideThing');
-  document.getElementById('sideResult').classList.add('showThing');
-}
-if(data === false){
-  document.getElementById('sideResult').classList.add('hideThing');
-  document.getElementById('sideResult').classList.remove('showThing');
-}
-});
+let wrong = document.getElementById("wrong");
 
-socket.on('ShowInterlude', data => {
-  console.log("check" + data);
-  if(data === true){
-    document.getElementById('interlude').classList.remove('ShowInterlude');
-    document.getElementById('interlude').classList.add('HideInterlude');
-    console.log(data);
-  }
-  if(data === false){
-    document.getElementById('interlude').classList.add('ShowInterlude');
-    document.getElementById('interlude').classList.remove('HideInterlude');
-  }
-});
-socket.on('LName', data => {
+socket.on('data', (data) => {
   console.log(data);
-  document.getElementById('LName').innerHTML = data;
-  LName = data;
+  score = data;
+  console.log(score.teamA);
+  $('#a').html(score.teamA);
+  $('#b').html(score.teamB);
+  $('#teamA').html(score.nameA);
+  $('#teamB').html(score.nameB);
+  $('#current').html(score.currentScore);
+  $('#question').html(score.question);
+// a1
+  if(score.a1.show){
+    a1a.innerHTML = score.a1.answer;
+    a1c.innerHTML = score.a1.points;
+    $('#a1').addClass("show");
+    $('#a1').removeClass("hide");
+    $('#s1').removeClass("show");
+    $('#s1').addClass("hide");
+  }
+  if(!score.a1.show){
+    $('#s1').addClass("show");
+    $('#s1').removeClass("hide");
+    $('#a1').removeClass("show");
+    $('#a1').addClass("hide");
+  }
+// a2
+  if(score.a2.show){
+    a2a.innerHTML = score.a2.answer;
+    a2c.innerHTML = score.a2.points;
+    $('#a2').addClass("show");
+    $('#a2').removeClass("hide");
+    $('#s2').removeClass("show");
+    $('#s2').addClass("hide");
+  }
+  if(!score.a2.show){
+    $('#s2').addClass("show");
+    $('#s2').removeClass("hide");
+    $('#a2').removeClass("show");
+    $('#a2').addClass("hide");
+  }
+// a3
+  if(score.a3.show){
+    a3a.innerHTML = score.a3.answer;
+    a3c.innerHTML = score.a3.points;
+    $('#a3').addClass("show");
+    $('#a3').removeClass("hide");
+    $('#s3').removeClass("show");
+    $('#s3').addClass("hide");
+  }
+  if(!score.a3.show){
+    $('#s3').addClass("show");
+    $('#s3').removeClass("hide");
+    $('#a3').removeClass("show");
+    $('#a3').addClass("hide");
+  }
+// a4
+  if(score.a4.show){
+    a4a.innerHTML = score.a4.answer;
+    a4c.innerHTML = score.a4.points;
+    $('#a4').addClass("show");
+    $('#a4').removeClass("hide");
+    $('#s4').removeClass("show");
+    $('#s4').addClass("hide");
+  }
+  if(!score.a4.show){
+    $('#s4').addClass("show");
+    $('#s4').removeClass("hide");
+    $('#a4').removeClass("show");
+    $('#a4').addClass("hide");
+  }
+  // a5
+  if(score.a5.show){
+    a5a.innerHTML = score.a5.answer;
+    a5c.innerHTML = score.a5.points;
+    $('#a5').addClass("show");
+    $('#a5').removeClass("hide");
+    $('#s5').removeClass("show");
+    $('#s5').addClass("hide");
+  }
+  if(!score.a5.show){
+    $('#s5').addClass("show");
+    $('#s5').removeClass("hide");
+    $('#a5').removeClass("show");
+    $('#a5').addClass("hide");
+  }
+  // a6
+  if(!score.a6.hide){
+    if(score.a6.show){
+      a6a.innerHTML = score.a6.answer;
+      a6c.innerHTML = score.a6.points;
+      $('#a6').addClass("show");
+      $('#a6').removeClass("hide");
+      $('#s6').removeClass("show");
+      $('#s6').addClass("hide");
+    }
+    if(!score.a6.show){
+      $('#s6').addClass("show");
+      $('#s6').removeClass("hide");
+      $('#a6').removeClass("show");
+      $('#a6').addClass("hide");
+    }
+  }
+  if(score.a6.hide){
+    $('#s6').addClass("hide");
+    $('#a6').addClass("hide");
+  }
+  if(score.wrong == 1){
+    wrong.innerHTML = "X"
+    $('#wrong').addClass("showWrong");
+    setTimeout(function() { remClass(); }, 3000);
+    console.log("1");
+  }
+  if(score.wrong == 2){
+    wrong.innerHTML = "X X"
+    $('#wrong').addClass("showWrong");
+    setTimeout(function() { remClass(); }, 3000);
+    console.log("2");
+  }
+  if(score.wrong == 3){
+    wrong.innerHTML = "X X X"
+    $('#wrong').addClass("showWrong");
+    setTimeout(function() { remClass(); }, 3000);
+    console.log("3");
+  }
+  console.log("data");
 });
 
-socket.on('RName', data => {
-  console.log(data);
-  document.getElementById('RName').innerHTML = data;
-  RName = data;
-});
-
-socket.on('text', (text) => {
-  document.getElementById('welcome').innerHTML = text;
-});
-
-socket.on('ShowTextBot', (data) => {
-  if(data === true){
-    document.getElementById('welcome').classList.add('showbot');
-    document.getElementById('welcome').classList.remove('hidebot');
+function remClass(){
+  $('#wrong').removeClass("showWrong");
 }
-if(data === false){
-  document.getElementById('welcome').classList.add('hidebot');
-  document.getElementById('welcome').classList.remove('showbot');
-}
-});
-
-socket.on('HideScoreboard', (data) => {
-  if(data === true){
-    document.getElementById('scoreboard').classList.add('showscore');
-    document.getElementById('scoreboard').classList.remove('hidden');
-    document.getElementById('ribbon').classList.add('showscore');
-    document.getElementById('ribbon').classList.remove('hidden');
-}
-if(data === false){
-  document.getElementById('scoreboard').classList.remove('showscore');
-  document.getElementById('scoreboard').classList.add('hidden');
-  document.getElementById('ribbon').classList.remove('showscore');
-  document.getElementById('ribbon').classList.add('hidden');
-}
-});
-
-socket.on('TLWins', (data) => {
-  if(data === 0){
-    console.log("Seen");
-    document.getElementById('LTeam1').style.backgroundColor = " rgba(206, 202, 202, 0.25)";
-}
-if(data === 1){
-  document.getElementById('LTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-}
-});
-
-socket.on('TRWins', (data) => {
-  if(data === 0){
-    document.getElementById('RTeam1').style.backgroundColor = " rgba(206, 202, 202, 0.25)";
-}
-if(data === 1){
-  document.getElementById('RTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-}
-});
-
-socket.on('ScoreL', (data) => {
-  document.getElementById('LScore').innerHTML = data;
-});
-
-socket.on('ScoreR', (data) => {
-  document.getElementById('RScore').innerHTML = data;
-});
-
-socket.on('CommentBox', (data) => {
-  if(data === true){
-    document.getElementById('commbox').classList.add('show');
-    document.getElementById('commbox').classList.remove('hide');
-}
-if(data === false){
-  document.getElementById('commbox').classList.add('hide');
-  document.getElementById('commbox').classList.remove('show');
-}
-});
-
-socket.on('ShowL', (data) => {
-  if(data === true){
-    document.getElementById('LTR').classList.add('ShowL');
-}
-if(data === false){
-  document.getElementById('LTR').classList.remove('ShowL');
-}
-});
-
-socket.on('ShowR', (data) => {
-  if(data === true){
-    document.getElementById('RTR').classList.add('ShowR');
-}
-if(data === false){
-  document.getElementById('RTR').classList.remove('ShowR');
-}
-});
-
-// document.getElementById('LScore').innerHTML = localStorage.getItem('ScoreL');
-// document.getElementById('RScore').innerHTML = localStorage.getItem('ScoreR');
-// if(localStorage.getItem('TLWins') === "0"){
-//     console.log("Seen");
-//     document.getElementById('LTeam1').style.backgroundColor = " rgba(206, 202, 202, 0.25)";
-// }
-// if(localStorage.getItem('TRWins') === "0"){
-//     document.getElementById('RTeam1').style.backgroundColor = " rgba(206, 202, 202, 0.25)";
-// }
-// if(localStorage.getItem('TLWins') === "1"){
-//     document.getElementById('LTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-// }
-// if(localStorage.getItem('TRWins') === "1"){
-//     document.getElementById('RTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-// }
-// if(localStorage.getItem('CommentBox') === "true"){
-//     document.getElementById('commbox').classList.add('show');
-//     document.getElementById('commbox').classList.remove('hide');
-// }
-// if(localStorage.getItem('CommentBox') === "false"){
-//     document.getElementById('commbox').classList.add('hide');
-//     document.getElementById('commbox').classList.remove('show');
-// }
-// if(localStorage.getItem('ShowL') === "true"){
-//     document.getElementById('LTR').classList.add('ShowL');
-// }
-// if(localStorage.getItem('ShowL') === "false"){
-//     document.getElementById('LTR').classList.remove('ShowL');
-// }
-// if(localStorage.getItem('ShowR') === "true"){
-//     document.getElementById('RTR').classList.add('ShowR');
-// }
-// if(localStorage.getItem('ShowR') === "false"){
-//     document.getElementById('RTR').classList.remove('ShowR');
-// }
-// if(localStorage.getItem('ShowTextBot') === "true"){
-//     document.getElementById('welcome').classList.add('showbot');
-//     document.getElementById('welcome').classList.remove('hidebot');
-// }
-// if(localStorage.getItem('ShowTextBot') === "false"){
-//     document.getElementById('welcome').classList.add('hidebot');
-//     document.getElementById('welcome').classList.remove('showbot');
-// }
-// if(localStorage.getItem('HideScoreboard') === "true"){
-//     document.getElementById('scoreboard').classList.add('showscore');
-//     document.getElementById('scoreboard').classList.remove('hidden');
-//     document.getElementById('ribbon').classList.add('showscore');
-//     document.getElementById('ribbon').classList.remove('hidden');
-// }
-// if(localStorage.getItem('HideScoreboard') === "false"){
-//     document.getElementById('scoreboard').classList.remove('showscore');
-//     document.getElementById('scoreboard').classList.add('hidden');
-//     document.getElementById('ribbon').classList.remove('showscore');
-//     document.getElementById('ribbon').classList.add('hidden');
-// }
-
-
-// if(localStorage.getItem('TLWins') === "2"){
-//     document.getElementById('LTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-//     document.getElementById('LTeam2').style.backgroundColor = "rgba(206, 202, 202, 1)";
-    // document.getElementById('LTeam3').style.backgroundColor = " rgba(206, 202, 202, 0.25)";
-// }
-// if(localStorage.getItem('TRWins') === "2"){
-//     document.getElementById('RTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-//     document.getElementById('RTeam2').style.backgroundColor = "rgba(206, 202, 202, 1)";
-//     // document.getElementById('RTeam3').style.backgroundColor = " rgba(206, 202, 202, 0.25)";
-// }
-// if(localStorage.getItem('TLWins') === "3"){
-//     document.getElementById('LTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-//     document.getElementById('LTeam2').style.backgroundColor = "rgba(206, 202, 202, 1)";
-//     document.getElementById('LTeam3').style.backgroundColor = "rgba(206, 202, 202, 1)";
-// }
-// if(localStorage.getItem('TRWins') === "3"){
-//     document.getElementById('RTeam1').style.backgroundColor = "rgba(206, 202, 202, 1)";
-//     document.getElementById('RTeam2').style.backgroundColor = "rgba(206, 202, 202, 1)";
-//     document.getElementById('RTeam3').style.backgroundColor = "rgba(206, 202, 202, 1)";
-// }

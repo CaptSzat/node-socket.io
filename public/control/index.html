@@ -8,53 +8,62 @@
     <link rel="stylesheet" href="./cstyle.css">
 </head>
 <body>
-    <div class="center">
-        <button id="Reset">Reset</button>
-        <button id="hideScore">Hide Scoreboard</button>
-    </div>
     <div class="inner">
-        <div class="TLScore">
-            <button id="TLScore1">Left Score +1</button>
-            <button id="TLWin">Left Win</button>
-            <button id="showL">Show/Hide Left</button>
-            <div class="LForm">
-                <p>Left Name</p><input type="text" id="LName"><button id="SetLName">Set Left Name</button>
+        <div class="row">
+            <button id="clear">Clear Board</button>
+            <button id="reset">Reset Score</button>
+            <button id="show">Show All Answers</button>
+            <button id="hide">Hide All Answers</button>
+        </div>
+        <br>
+        <div class="question" id="question"></div>
+        <div class="row">
+            <button id="a1">Show Answer 1</button>
+            <button id="a2">Show Answer 2</button>
+            <button id="a3">Show Answer 3</button>
+            <button id="a4">Show Answer 4</button>
+            <button id="a5">Show Answer 5</button>
+            <button id="a6">Show Answer 6</button>
+        </div>
+        <br>
+        <div class="row">
+            <button id="w1">Wrong 1</button>
+            <button id="w2">Wrong 2</button>
+            <button id="w3">Wrong 3</button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="column">
+                <p>Team A </p>
+                <input type="text" id="nameA">
             </div>
+            <div class="column">
+                <p>Team B</p>
+                <input type="text" id="nameB">
+            </div>
+            <button id="updateName">Update Name</button>
         </div>
-        <div class="TRScore">
-            <button id="TRScore1">Right Score +1</button>
-            <button id="TRWin">Right Win</button>
-            <button id="showR">Show/Hide Right</button>
-            <div class="RForm">
-                <p>Right Name</p><input type="text" id="RName"><button id="SetRName">Set Right Name</button>
-            </div>   
+        <br>
+        <div class="row">
+            <button id="teamA">Team A gets the points</button>
+            <button id="teamB">Team B gets the points</button>
         </div>
-    </div>
-    <div class="commentary">
-        <p>Commentary</p>
-        <button id="show">Show/Hide</button>
-    </div>
-    <div class="bottomText">
-        <input type="text" id="welcome">
-        <button id="ShowTextBot">Show Bottom text</button>
-    </div>
-    <div class="interlude">
-        <button id="ShowInterlude">Interlude</button>
-    </div>
-    <div class="interludeScreen hide" id="interlude">
-        <button id="HideInterlude">Hide Interlude</button>
-        <button id="Result">Result</button>
-        <div class="results">
-            <div class="gm1"><button id="G1">G1</button>L<input type="number" id="G1L">R<input type="number" id="G1R"></div>
-            <div class="gm2"><button id="G2">G2</button>L<input type="number" id="G2L">R<input type="number" id="G2R"></div>
-            <div class="gm3"><button id="G3">G3</button>L<input type="number" id="G3L">R<input type="number" id="G3R"></div>
-            <div class="gm4"><button id="G4">G4</button>L<input type="number" id="G4L">R<input type="number" id="G4R"></div>
-            <button id="clear">Clear</button>
+        <br>
+        <p>ONLY INCASE OF ERROR</p>
+        <div class="row">
+            <div class="column">
+                <p>Team A Points</p>
+                <input type="text" id="pointsA">
+            </div>
+            <div class="column">
+                <p>Team B Points</p>
+                <input type="text" id="pointsB">
+            </div>
+            <button id="updateScore">Update Score</button>
         </div>
     </div>
-    <!-- <p id="server-time"></p> -->
-    <br>
     <script src="/socket.io/socket.io.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./control.js"></script>
 </body>
 </html>

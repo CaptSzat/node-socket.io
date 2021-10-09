@@ -1,78 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="inner">
-    <div class="scoreboard" id="scoreboard">
-        <div class="team one">
-            <div class="name" id="LName">Jack</div>
-            <div class="score" id="LScore">0</div>
+    <div class="inner">
+        <div class="score a">
+            <p class="score__inner" id="a">0</p>
         </div>
-        <div class="clock"></div>
-        <div class="team two">
-            <div class="name" id="RName">Jeff</div>
-            <div class="score" id="RScore">0</div>
-        </div>
-    </div>
-    <div class="ribbon" id="ribbon">
-        <div class="LTeamWin">
-            <div class="wins" id="LTeam1"></div>
-            <!-- <div class="wins" id="LTeam2"></div> -->
-            <!-- <div class="wins" id="LTeam3"></div> -->
-        </div>
-        <div class="RTeamWin">
-            <div class="wins" id="RTeam1"></div>
-            <!-- <div class="wins" id="RTeam2"></div> -->
-            <!-- <div class="wins" id="RTeam3"></div> -->
-        </div>
-    </div>
-    <div class="commentary" id="commbox">
-        <div class="comment-title"><p class="in">Commentary</p></div>
-        <div class="names first">
-            <p>Rue<br>
-            ZR
-            </p>
-        </div>
-    </div>
-    <div class="welcome" id="welcome">
-        <p id="p">Welcome To RLC3</p>
-    </div>
-    <div class="interlude HideInterlude" id="interlude">
-        <h1>RLC3</h1>
-        <div class="middle">
-            <div class="faces">
-                <div class="person">
-                    <img src="./img/Ethan.png" alt="">
-                    <p>Rue</p>
-                </div>
-                <div class="person">
-                    <img src="./img/Matthew.png" alt="">
-                    <p>ZR</p>
-                </div>
+        <div class="survey">
+            <div class="row">
+                <div class="result show" id="s1"><p>1</p></div>
+                <div class="result show" id="s2"><p>2</p></div>
+                <div class="result show" id="s3"><p>3</p></div>
             </div>
-            <div class="cards">
-                <p class="JD">Jack <span>v</span> Dylan</p>
-                <p class="JT">Jordan <span>v</span> Thomas</p>
-                <p class="EK">Ethan <span>v</span> Kean</p>
+            <div class="row">
+                <div class="result show" id="s4"><p>4</p></div>
+                <div class="result show" id="s5"><p>5</p></div>
+                <div class="result show" id="s6"><p>6</p></div>
             </div>
         </div>
-        <div class="side showThing" id="sideResult"></div>
+        <div class="says">
+            <div class="row">
+                <div class="result hide" id="a1"><p class="answer" id="a1a">Cats</p><p class="count" id="a1c">2</p></div>
+                <div class="result hide" id="a2"><p class="answer" id="a2a">Dogs</p><p class="count" id="a2c">400</p></div>
+                <div class="result hide" id="a3"><p class="answer" id="a3a">Castle</p><p class="count" id="a3c">20</p></div>
+            </div>
+            <div class="row">
+                <div class="result hide" id="a4"><p class="answer" id="a4a">Kingdom</p><p class="count" id="a4c">90</p></div>
+                <div class="result hide" id="a5"><p class="answer" id="a5a">Massive Castle</p><p class="count" id="a5c">75</p></div>
+                <div class="result hide" id="a6"><p class="answer" id="a6a">20 char is the max.......</p><p class="count" id="a6c">23</p></div>
+            </div>
+        </div>
+        <div class="score b">
+            <p class="score__inner" id="b">100</p>
+        </div>
     </div>
-<div class="LTR" id="LTR">
-   <p>Won The Last game</p>
-</div>
-<div class="RTR" id="RTR">
-   <p>Won The Last game</p>
-</div>
-  <!-- <p id="server-time"></p> -->
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="./index.js"></script>
-  <!-- <script src="./test.js"></script> -->
+    <div class="teams">
+        <h1 class="teamA" id="teamA">2B</h1>
+        <h1 class="teamB" id="teamB">3B</h1>
+    </div>
+    <div class="question__outer"><h1 class="question" id="question">Get Ready!</h1></div>
+    <div class="score current">
+        <p class="score__inner" id="current">0</p>
+    </div>
+    <div class="bg"></div>
+    <div class="wrong">
+        <div class="wrong__inner" id="wrong">X X X</div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>
